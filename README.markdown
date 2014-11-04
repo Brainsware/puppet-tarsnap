@@ -52,7 +52,7 @@ class { 'tarsnap':
 }
 ```
 
-Every option that can be set in `tarsnap.conf` can be set through the base
+Many option that can be set in `tarsnap.conf` can be set through the base
 class. The most important one is `$cachedir`. All `boolean` options (those that
 can be prefaced with `no-` in `tarsnap.conf`) can be set to `true`/`false`.
 
@@ -90,11 +90,37 @@ cron { 'dailiy-tarsnap-etc-trim-30':
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module. This section should include all of the under-the-hood workings of your module so people know what the module is touching on their system but don't need to mess with things. (We are working on automating this section!)
+*package_name*
+ Name of tarsnap package. If tarsnap is installed by other means, set this to `undef` (Default: `tarsnap`)
+
+*package_ensure*
+ Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
+
+*configfile*
+ Path to tarsnap's configuration file. (Default: `present`)
+
+*cachedir*
+ Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backup/tarsnap`)
+
+*keyfile*
+ Path to tarsnap's keyfile for this machine. (Default: `/root/tarsnap.key`)
+
+*nodump*
+ Honor the `nodump` file flag. (Default: `true`)
+
+*print_stats*
+ Print statistics when creating or deleting archives. (Default: `true`)
+
+*checkpoint_bytes*
+ Create a checkpoint once per X of uploaded data (Default: `1G`)
+
+*aggressive_networking*
+ Use multiple TCP connections when writing archives. (Default: `undef`)
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+While it is possible to configure tarsnap on a per-user basis, tarsnap::config
+currently is a class. If you think it's useful to change that, please contribute!
 
 ## Development
 
