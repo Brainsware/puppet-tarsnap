@@ -73,7 +73,7 @@ cron { 'tarsnap-etc-daily':
   command => "/usr/bin/tarsnap -c -f etc.`date +%Y%m%d` /etc /usr/local/etc /opt/etc",
   user    => 'root',
   hour    => 2,
-  minute  => fqdn_rand()/59,
+  minute  => fqdn_rand(60),
 }
 ```
 
@@ -84,7 +84,7 @@ cron { 'dailiy-tarsnap-etc-trim-30':
   command => "/usr/bin/tarsnap --list-archives | grep 'etc\.' | sort -n | head -n +30 | xargs -n 1 /usr/bin/tarsnap -d -f"
   user    => 'root',
   hour    => 3,
-  minute  => fqdn_rand()/59,
+  minute  => fqdn_rand(60),
 }
 ```
 
