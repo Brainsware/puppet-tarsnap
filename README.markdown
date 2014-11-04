@@ -3,7 +3,6 @@
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with tarsnap](#setup)
-    * [Setup requirements](#setup-requirements)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -14,8 +13,6 @@
 this module helps install and configure tarsnap.
 
 **It does not, and cannot help you create keys for servers. You have to do that manually**
-
-What it can do however, is manage archives. It does so with the native puppet type, `tarsnap_archive`
 
 ## Setup
 
@@ -28,9 +25,6 @@ In order for tarsnap to be fully functional, and thus for this module to be,
 you must setup the key. Please follow the [instructions of the official
 documentation](https://www.tarsnap.com/gettingstarted.html)
 
-### Setup Requirements **OPTIONAL**
-
-Since this module provides a native type, pluginsync must be enabled.
 
 ## Usage
 
@@ -71,6 +65,28 @@ class { 'tarsnap':
 
 n.b.: this module will guarantee that `$cachedir` exists as directory and is
 `root`:`root` owned.
+
+The easiest way to use tarsnap is from cron:
+
+```puppet
+cron { 'tarsnap-etc-daily':
+  command => "/usr/bin/tarsnap -c -f etc.`date +%Y%m%d` /etc /usr/local/etc /opt/etc",
+  user    => 'root',
+  hour    => 2,
+  minute  => fqdn_rand()/59,
+}
+```
+
+if we want to only keep the last 30 days, we can follow this up with:
+
+```puppet
+cron { 'dailiy-tarsnap-etc-trim-30':
+  command => "/usr/bin/tarsnap --list-archives | grep 'etc\.' | sort -n | head -n +30 | xargs -n 1 /usr/bin/tarsnap -d -f"
+  user    => 'root',
+  hour    => 3,
+  minute  => fqdn_rand()/59,
+}
+```
 
 ## Reference
 
