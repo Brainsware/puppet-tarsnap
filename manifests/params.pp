@@ -7,7 +7,7 @@ class tarsnap::params {
   $package_name          = 'tarsnap'
   $package_ensure        = 'present'
   $configfile            = '/etc/tarsnap.conf'
-  $cachedir              = '/var/backup/tarsnap'
+  $cachedir              = '/var/backups/tarsnap'
   $keyfile               = '/root/tarsnap.key'
   $nodump                = true
   $print_stats           = true

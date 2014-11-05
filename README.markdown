@@ -58,7 +58,7 @@ can be prefaced with `no-` in `tarsnap.conf`) can be set to `true`/`false`.
 
 ```puppet
 class { 'tarsnap':
-  cachedir               => '/var/backup/tarsnap',
+  cachedir               => '/var/backups/tarsnap',
   aggressive_networking  => false,
 }
 ```
@@ -111,7 +111,7 @@ tarsnap::periodic { 'etc':
  Path to tarsnap's configuration file. (Default: `present`)
 
 *cachedir*
- Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backup/tarsnap`)
+ Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)
 
 *keyfile*
  Path to tarsnap's keyfile for this machine. (Default: `/root/tarsnap.key`)
