@@ -4,9 +4,9 @@
   "author": "brainsware",
   "summary": "a module to install and configure tarsnap",
   "license": "Apache 2.0",
-  "source": "https://git.esotericsystems.at/puppet/tarsnap",
-  "project_page": "https://git.esotericsystems.at/puppet/tarsnap",
-  "issues_url": "https://git.esotericsystems.at/puppet/tarsnap/issues",
+  "source": "https://github.com/Brainsware/puppet-tarsnap",
+  "project_page": "https://github.com/Brainsware/puppet-tarsnap",
+  "issues_url": "https://github.com/Brainsware/puppet-tarsnap/issues",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
