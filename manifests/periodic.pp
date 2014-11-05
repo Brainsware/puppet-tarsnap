@@ -27,7 +27,7 @@
 #
 define tarsnap::periodic (
   $dirs,
-  $path   = '/usr/bin/tarsnap',
+  $path   = '/usr/local/bin/tarsnap',
   $keep   = 30,
   $hour   = 1+fqdn_rand(6),
   $minute = fqdn_rand(60),
