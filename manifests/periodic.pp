@@ -49,7 +49,7 @@ define tarsnap::periodic (
   #   delete each one of those we've found, separately.
   if $keep {
     cron { "tarsnap-${title}-keep-${keep}":
-      command => "${path} --list-archives | grep ${title}. | sort -n | head -n +${keep} | xargs -n1 ${path} -d -f",
+      command => "${path} --list-archives | grep ${title}. | sort -rn | tail -n +${keep} | xargs -n1 ${path} -d -f",
       user    => 'root',
       hour    => $hour + $offset,
       minute  => $minute,
