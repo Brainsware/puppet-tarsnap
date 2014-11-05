@@ -11,7 +11,7 @@
 #   Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
 #
 # [*configfile*]
-#   Path to tarsnap's configuration file. (Default: `present`)
+#   Path to tarsnap's configuration file. (Default: `/usr/local/etc/tarsnap.conf`)
 #
 # [*cachedir*]
 #   Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)

@@ -11,7 +11,7 @@
 #   Array of dirs to backup
 #
 # [*path*]
-#   Path to tarsnap binaries. (Default: `/usr/bin/tarsnap`)
+#   Path to tarsnap binaries. (Default: `/usr/local/bin/tarsnap`)
 #
 # [*keep*]
 #   How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)
