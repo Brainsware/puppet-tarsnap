@@ -88,7 +88,18 @@ cron { 'dailiy-tarsnap-etc-trim-30':
 }
 ```
 
+We provide a convenience wrapper around those two expressions:
+
+```puppet
+tarsnap::periodic { 'etc':
+  dirs => [ 'etc', '/usr/local/etc', '/opt/etc' ],
+  hour => 3,
+}
+```
+
 ## Reference
+
+### tarsnap
 
 *package_name*
  Name of tarsnap package. If tarsnap is installed by other means, set this to `undef` (Default: `tarsnap`)
@@ -117,10 +128,35 @@ cron { 'dailiy-tarsnap-etc-trim-30':
 *aggressive_networking*
  Use multiple TCP connections when writing archives. (Default: `undef`)
 
+### tarsnap::periodic
+
+*name*
+ base-name of this archive
+
+*dirs*
+ Array of dirs to backup
+
+*path*
+ Path to tarsnap binaries. (Default: `/usr/bin/tarsnap`)
+
+*keep*
+ How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)
+
+*hour*
+ Hour when to run. (Default: `1+fqdn_rand(6)`, i.e.: between 01:xx and 06:xx)
+
+*minute*
+ Minute when to run. (Default: `fqdn_rand(60)`, i.e.: between xx:00 and xx:59)
+
+*offset*
+ Offset (in hours) when to run the cleanup job. (Default: `1`)
+
 ## Limitations
 
 While it is possible to configure tarsnap on a per-user basis, tarsnap::config
 currently is a class. If you think it's useful to change that, please contribute!
+
+`tarsnap::periodic` assumes GNU coreutils.
 
 ## Development
 
