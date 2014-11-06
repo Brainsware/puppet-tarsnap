@@ -1,0 +1,14 @@
+#!/bin/sh
+
+title="$1"
+shift
+
+keep="$1"
+shift
+
+<%= @path %> --list-archives \
+  | grep ${title}. \
+  | sort -rn \
+  | tail -n +${keep} \
+  | xargs -rn1 <%= @path %> -d -f
+

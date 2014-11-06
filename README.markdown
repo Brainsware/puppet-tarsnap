@@ -110,6 +110,15 @@ tarsnap::periodic { 'etc':
 *configfile*
  Path to tarsnap's configuration file. (Default: `/usr/local/etc/tarsnap.conf`)
 
+*path*
+ Path to tarsnap. (Default: `/usr/local/bin/tarsnap`)
+
+*archive_path*
+ Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)
+
+*rotate_path*
+ Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
+
 *cachedir*
  Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)
 
@@ -135,9 +144,6 @@ tarsnap::periodic { 'etc':
 
 *dirs*
  Array of dirs to backup
-
-*path*
- Path to tarsnap binaries. (Default: `/usr/bin/tarsnap`)
 
 *keep*
  How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)

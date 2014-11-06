@@ -10,6 +10,15 @@
 # [*package_ensure*]
 #   Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
 #
+# [*path*]
+#   Path to tarsnap. (Default: `/usr/local/bin/tarsnap`)
+#
+# [*archive_path*]
+#   Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)
+#
+# [*rotate_path*]
+#   Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
+#
 # [*configfile*]
 #   Path to tarsnap's configuration file. (Default: `/usr/local/etc/tarsnap.conf`)
 #
