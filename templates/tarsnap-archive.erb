@@ -3,4 +3,4 @@
 title="$1"
 shift
 
-<%= @path %> -c -f $title.$(date +%Y%m%d%H%M) $@
+<%= @path %> --quiet -c -f $title.$(date +%Y%m%d%H%M) $@
