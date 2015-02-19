@@ -21,9 +21,22 @@ package repositories. You can override this expectation by either chainging the
 `$package_name`, or by setting it to `undef` if you have other means of
 installing it.
 
+### PPA
+
+For Ubuntu, I have created a
+[PPA](https://launchpad.net/~tarsnap/+archive/ubuntu/lts) which builds the
+latest version of tarsnap for all Ubuntu LTS. If you're interested in helping
+with that, you can also join that team on launchpad.
+
+### Keys
+
 In order for tarsnap to be fully functional, and thus for this module to be,
 you must setup the key. Please follow the [instructions of the official
 documentation](https://www.tarsnap.com/gettingstarted.html)
+
+As I'd rather not be responsible for making your backups inaccessible through a
+puppet hickup, keys are, as of yet, not created automatically (and thus cannot
+be re-created automatically ;).
 
 
 ## Usage
@@ -108,10 +121,10 @@ tarsnap::periodic { 'etc':
  Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
 
 *configfile*
- Path to tarsnap's configuration file. (Default: `/usr/local/etc/tarsnap.conf`)
+ Path to tarsnap's configuration file. (Default: `/etc/tarsnap.conf`)
 
 *path*
- Path to tarsnap. (Default: `/usr/local/bin/tarsnap`)
+ Path to tarsnap. (Default: `/usr/bin/tarsnap`)
 
 *archive_path*
  Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)

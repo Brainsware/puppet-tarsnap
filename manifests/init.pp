@@ -11,7 +11,7 @@
 #   Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
 #
 # [*path*]
-#   Path to tarsnap. (Default: `/usr/local/bin/tarsnap`)
+#   Path to tarsnap. (Default: `/usr/bin/tarsnap`)
 #
 # [*archive_path*]
 #   Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)
@@ -20,7 +20,7 @@
 #   Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
 #
 # [*configfile*]
-#   Path to tarsnap's configuration file. (Default: `/usr/local/etc/tarsnap.conf`)
+#   Path to tarsnap's configuration file. (Default: `/etc/tarsnap.conf`)
 #
 # [*cachedir*]
 #   Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)
