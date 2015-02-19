@@ -25,8 +25,8 @@
 define tarsnap::periodic (
   $dirs,
   $keep   = 30,
-  $hour   = 1+fqdn_rand(6),
-  $minute = fqdn_rand(60),
+  $hour   = 1+fqdn_rand(6, $title),
+  $minute = fqdn_rand(60, $title),
   $offset = 1,
 ) {
 
