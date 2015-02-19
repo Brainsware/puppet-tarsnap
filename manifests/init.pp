@@ -52,7 +52,7 @@ class tarsnap (
   String  $checkpoint_bytes = '1G',
   Boolean $nodump           = true,
   Boolean $print_stats      = true,
-  Optional[Boolean] $aggressive_networking,
+  Optional[Boolean] $aggressive_networking = undef,
 ) {
   validate_absolute_path($path)
   validate_absolute_path($archive_path)
