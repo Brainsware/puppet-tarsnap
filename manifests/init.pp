@@ -41,18 +41,18 @@
 #   Use multiple TCP connections when writing archives. (Default: `undef`)
 #
 class tarsnap (
-  $package_name          = 'tarsnap',
-  $package_ensure        = 'present',
-  $path                  = '/usr/bin/tarsnap',
-  $archive_path          = '/usr/local/bin/tarsnap-archive',
-  $rotate_path           = '/usr/local/bin/tarsnap-rotate',
-  $configfile            = '/etc/tarsnap.conf',
-  $cachedir              = '/var/backups/tarsnap',
-  $keyfile               = '/root/tarsnap.key',
-  $nodump                = true,
-  $print_stats           = true,
-  $checkpoint_bytes      = '1G',
-  $aggressive_networking = undef,
+  String  $package_name     = 'tarsnap',
+  String  $package_ensure   = 'present',
+  String  $path             = '/usr/bin/tarsnap',
+  String  $archive_path     = '/usr/local/bin/tarsnap-archive',
+  String  $rotate_path      = '/usr/local/bin/tarsnap-rotate',
+  String  $configfile       = '/etc/tarsnap.conf',
+  String  $cachedir         = '/var/backups/tarsnap',
+  String  $keyfile          = '/root/tarsnap.key',
+  String  $checkpoint_bytes = '1G',
+  Boolean $nodump           = true,
+  Boolean $print_stats      = true,
+  Optional[Boolean] $aggressive_networking,
 ) {
   validate_absolute_path($path)
   validate_absolute_path($archive_path)
@@ -60,12 +60,6 @@ class tarsnap (
   validate_absolute_path($configfile)
   validate_absolute_path($cachedir)
   validate_absolute_path($keyfile)
-
-  validate_bool($nodump)
-  validate_bool($print_stats)
-  if $aggressive_networking {
-    validate_bool($print_stats)
-  }
 
   contain ::tarsnap::install
   contain ::tarsnap::config
