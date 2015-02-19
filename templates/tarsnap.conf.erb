@@ -23,10 +23,8 @@ checkpoint-bytes <%= @checkpoint_bytes %>
 # factor in upload performance.
 <%- if @aggresssive_networking.nil? -%>
 #aggressive-networking
-<%- elsif !@aggressive_networking -%>
-no-aggressive-networking
 <%- else -%>
-aggressive-networking
+<%- unless @aggresssive_networking -%>no-<%- end -%>aggressive-networking
 <%- end -%>
 
 # Exclude files and directories matching specified patterns
