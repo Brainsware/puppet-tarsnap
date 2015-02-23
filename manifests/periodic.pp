@@ -55,7 +55,7 @@ define tarsnap::periodic (
       ensure  => $ensure,
       command => "${::tarsnap::rotate_path} ${title} ${keep}",
       user    => 'root',
-      hour    => $hour + $offset,
+      hour    => abs(24 - ($hour + $offset)),
       minute  => $minute,
     }
   }
