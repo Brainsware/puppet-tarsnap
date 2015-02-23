@@ -14,10 +14,10 @@
 #   How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)
 #
 # [*hour*]
-#   Hour when to run. (Default: `1+fqdn_rand(6)`, i.e.: between 01:xx and 06:xx)
+#   Hour when to run. (Default: `fqdn_rand(24, $title)`, i.e.: between 0:xx and 23:xx)
 #
 # [*minute*]
-#   Minute when to run. (Default: `fqdn_rand(60)`, i.e.: between xx:00 and xx:59)
+#   Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00 and xx:59)
 #
 # [*offset*]
 #   Offset (in hours) when to run the cleanup job. (Default: `1`)
@@ -25,7 +25,7 @@
 define tarsnap::periodic (
   $dirs,
   $keep   = 30,
-  $hour   = 1+fqdn_rand(6, $title),
+  $hour   = fqdn_rand(24, $title),
   $minute = fqdn_rand(60, $title),
   $offset = 1,
 ) {
