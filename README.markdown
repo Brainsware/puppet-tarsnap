@@ -155,8 +155,11 @@ tarsnap::periodic { 'etc':
 *name*
  base-name of this archive
 
+*ensure*
+  Ensure presence or absence of cron jobs. (Default: `present`)
+
 *dirs*
- Array of dirs to backup
+ Array of dirs to backup (Default: `[]`)
 
 *keep*
  How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)
