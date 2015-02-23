@@ -51,11 +51,12 @@ define tarsnap::periodic (
   #   sort them numerically, then get the everything but last n ($keep)
   #   delete each one of those we've found, separately.
   if $keep {
+    $off_hour = (24 + ($hour + $offset)) % 24
     cron { "tarsnap-${title}-keep-${keep}":
       ensure  => $ensure,
       command => "${::tarsnap::rotate_path} ${title} ${keep}",
       user    => 'root',
-      hour    => abs(24 - ($hour + $offset)),
+      hour    => $off_hour,
       minute  => $minute,
     }
   }
