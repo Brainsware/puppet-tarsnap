@@ -114,64 +114,28 @@ tarsnap::periodic { 'etc':
 
 ### tarsnap
 
-*package_name*
- Name of tarsnap package. If tarsnap is installed by other means, set this to `undef` (Default: `tarsnap`)
-
-*package_ensure*
- Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
-
-*configfile*
- Path to tarsnap's configuration file. (Default: `/etc/tarsnap.conf`)
-
-*path*
- Path to tarsnap. (Default: `/usr/bin/tarsnap`)
-
-*archive_path*
- Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)
-
-*rotate_path*
- Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
-
-*cachedir*
- Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)
-
-*keyfile*
- Path to tarsnap's keyfile for this machine. (Default: `/root/tarsnap.key`)
-
-*nodump*
- Honor the `nodump` file flag. (Default: `true`)
-
-*print_stats*
- Print statistics when creating or deleting archives. (Default: `true`)
-
-*checkpoint_bytes*
- Create a checkpoint once per X of uploaded data (Default: `1G`)
-
-*aggressive_networking*
- Use multiple TCP connections when writing archives. (Default: `undef`)
+* `package_name`: Name of tarsnap package. If tarsnap is installed by other means, set this to `undef` (Default: `tarsnap`)
+* `package_ensure`: Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
+* `configfile`: Path to tarsnap's configuration file. (Default: `/etc/tarsnap.conf`)
+* `path`: Path to tarsnap. (Default: `/usr/bin/tarsnap`)
+* `archive_path`: Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)
+* `rotate_path`: Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
+* `cachedir`: Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)
+* `keyfile`: Path to tarsnap's keyfile for this machine. (Default: `/root/tarsnap.key`)
+* `nodump`: Honor the `nodump` file flag. (Default: `true`)
+* `print_stats`: Print statistics when creating or deleting archives. (Default: `true`)
+* `checkpoint_bytes`: Create a checkpoint once per X of uploaded data (Default: `1G`)
+* `aggressive_networking`: Use multiple TCP connections when writing archives. (Default: `undef`)
 
 ### tarsnap::periodic
 
-*name*
- base-name of this archive
-
-*ensure*
-  Ensure presence or absence of cron jobs. (Default: `present`)
-
-*dirs*
- Array of dirs to backup (Default: `[]`)
-
-*keep*
- How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)
-
-*hour*
- Hour when to run. (Default: `fqdn_rand(24, $title)`, i.e.: between 00:xx and 23:xx)
-
-*minute*
- Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00 and xx:59)
-
-*offset*
- Offset (in hours) when to run the cleanup job. (Default: `1`)
+* `name`: base-name of this archive
+* `ensure`: Ensure presence or absence of cron jobs. (Default: `present`)
+* `dirs`: Array of dirs to backup (Default: `[]`)
+* `keep`: How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)
+* `hour`: Hour when to run. (Default: `fqdn_rand(24, $title)`, i.e.: between 00:xx and 23:xx)
+* `minute`: Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00 and xx:59)
+* `offset`: Offset (in hours) when to run the cleanup job. (Default: `1`)
 
 ## Limitations
 
@@ -182,8 +146,5 @@ currently is a class. If you think it's useful to change that, please contribute
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You may also add any additional sections you feel are necessary or important to include here. Please use the `## ` header. 
+Please use the github issues functionality to report any bugs or requests for new features.
+Feel free to fork and submit pull requests for potential contributions.
