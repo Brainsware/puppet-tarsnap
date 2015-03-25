@@ -5,10 +5,12 @@
 # === Parameters
 #
 # [*package_name*]
-#   Name of tarsnap package. If tarsnap is installed by other means, set this to `undef` (Default: `tarsnap`)
+#   Name of tarsnap package. If tarsnap is installed by other means, set this to
+#   `undef` (Default: `tarsnap`)
 #
 # [*package_ensure*]
-#   Ensure tarsnap package is in this version, `absent`, `present` or `latest`. (Default: `present`)
+#   Ensure tarsnap package is in this version, `absent`, `present` or `latest`.
+#   (Default: `present`)
 #
 # [*path*]
 #   Path to tarsnap. (Default: `/usr/bin/tarsnap`)
@@ -23,7 +25,8 @@
 #   Path to tarsnap's configuration file. (Default: `/etc/tarsnap.conf`)
 #
 # [*cachedir*]
-#   Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)
+#   Path to tarsnap's cachedir. This directory will be created by puppet.
+#   (Default: `/var/backups/tarsnap`)
 #
 # [*keyfile*]
 #   Path to tarsnap's keyfile for this machine. (Default: `/root/tarsnap.key`)
@@ -41,19 +44,22 @@
 #   Use multiple TCP connections when writing archives. (Default: `undef`)
 #
 class tarsnap (
-  $package_name          = 'tarsnap',
-  $package_ensure        = 'present',
-  $path                  = '/usr/bin/tarsnap',
-  $archive_path          = '/usr/local/bin/tarsnap-archive',
-  $rotate_path           = '/usr/local/bin/tarsnap-rotate',
-  $configfile            = '/etc/tarsnap.conf',
-  $cachedir              = '/var/backups/tarsnap',
-  $keyfile               = '/root/tarsnap.key',
-  $nodump                = true,
-  $print_stats           = true,
-  $checkpoint_bytes      = '1G',
-  $aggressive_networking = undef,
-) {
+  $package_name          = $::tarsnap::params::package_name,
+  $package_ensure        = $::tarsnap::params::package_ensure,
+  $path                  = $::tarsnap::params::path,
+  $archive_path          = $::tarsnap::params::archive_path,
+  $rotate_path           = $::tarsnap::params::rotate_path,
+  $configfile            = $::tarsnap::params::configfile,
+  $cachedir              = $::tarsnap::params::cachedir,
+  $keyfile               = $::tarsnap::params::keyfile,
+  $nodump                = $::tarsnap::params::nodump,
+  $print_stats           = $::tarsnap::params::print_stats,
+  $checkpoint_bytes      = $::tarsnap::params::checkpoint_bytes,
+  $aggressive_networking = $::tarsnap::params::aggressive_networking,
+  $user                  = $::tarsnap::params::user,
+  $group                 = $::tarsnap::params::group,
+) inherits ::tarsnap::params {
+
   validate_absolute_path($path)
   validate_absolute_path($archive_path)
   validate_absolute_path($rotate_path)
@@ -63,10 +69,11 @@ class tarsnap (
 
   validate_bool($nodump)
   validate_bool($print_stats)
+
   if $aggressive_networking {
     validate_bool($print_stats)
   }
 
-  contain ::tarsnap::install
-  contain ::tarsnap::config
+  class { '::tarsnap::install': } ~>
+  class { '::tarsnap::config': }
 }

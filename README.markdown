@@ -178,8 +178,6 @@ tarsnap::periodic { 'etc':
 While it is possible to configure tarsnap on a per-user basis, tarsnap::config
 currently is a class. If you think it's useful to change that, please contribute!
 
-`tarsnap::periodic` assumes GNU coreutils.
-
 ## Development
 
 Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.

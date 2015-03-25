@@ -6,9 +6,15 @@ shift
 keep="$1"
 shift
 
-<%= @path %> --list-archives \
+<%- # handle potential absence of GNU coreutils -%>
+<%- if @kernel == "Linux" -%>
+<%-   cmd_keep  = 'tail -n +${keep}' -%>
+<%- else -%>
+<%-   cmd_keep  = 'sed "1,${keep}d"' -%>
+<%- end -%>
+<%= scope.lookupvar("tarsnap::path") %> --list-archives \
   | grep ${title}. \
   | sort -rn \
-  | tail -n +${keep} \
-  | xargs -rn1 <%= @path %> -d -f
+  | <%= cmd_keep %> \
+  | xargs -rn1 <%= scope.lookupvar("tarsnap::path") %> -d -f
 
