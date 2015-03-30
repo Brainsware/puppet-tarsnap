@@ -1,6 +1,6 @@
 {
   "name": "brainsware-tarsnap",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "author": "brainsware",
   "summary": "a module to install and configure tarsnap",
   "license": "Apache 2.0",
@@ -12,12 +12,22 @@
       "name": "puppetlabs-stdlib",
       "version_requirement": ">= 1.0.0"
     }
-  ]
+  ],
   "operatingsystem_support": [
-    { "operatingsystem": "Ubuntu" },
-    { "operatingsystem": "Debian" },
-    { "operatingsystem": "RedHat" },
-    { "operatingsystem": "CentOS" },
-    { "operatingsystem": "FreeBSD" }
+    {
+      "operatingsystem": "Ubuntu"
+    },
+    {
+      "operatingsystem": "Debian"
+    },
+    {
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystem": "CentOS"
+    },
+    {
+      "operatingsystem": "FreeBSD"
+    }
   ]
 }
