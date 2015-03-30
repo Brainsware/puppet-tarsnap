@@ -14,13 +14,16 @@
 #   Array of dirs to backup (Default: `[]`)
 #
 # [*keep*]
-#   How many archives to keep. If this is set to `undef` no archives will be deleted. (Default: `30`)
+#   How many archives to keep. If this is set to `undef` no archives will be
+#   deleted. (Default: `30`)
 #
 # [*hour*]
-#   Hour when to run. (Default: `fqdn_rand(24, $title)`, i.e.: between 0:xx and 23:xx)
+#   Hour when to run. (Default: `fqdn_rand(24, $title)`, i.e.: between 0:xx
+#   and 23:xx)
 #
 # [*minute*]
-#   Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00 and xx:59)
+#   Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00
+#   and xx:59)
 #
 # [*offset*]
 #   Offset (in hours) when to run the cleanup job. (Default: `1`)
@@ -41,7 +44,7 @@ define tarsnap::periodic (
   cron { "tarsnap-${title}-create":
     ensure  => $ensure,
     command => "${::tarsnap::archive_path} ${title} ${dir_string}",
-    user    => 'root',
+    user    => $::tarsnap::user,
     hour    => $hour,
     minute  => $minute,
   }
@@ -55,7 +58,7 @@ define tarsnap::periodic (
     cron { "tarsnap-${title}-keep-${keep}":
       ensure  => $ensure,
       command => "${::tarsnap::rotate_path} ${title} ${keep}",
-      user    => 'root',
+      user    => $::tarsnap::user,
       hour    => $off_hour,
       minute  => $minute,
     }

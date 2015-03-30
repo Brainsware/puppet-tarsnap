@@ -1,19 +1,19 @@
 ### Recommended options
 
 # Tarsnap cache directory
-cachedir <%= @cachedir %>
+cachedir <%= scope.lookupvar("tarsnap::cachedir") %>
 
 # Tarsnap key file
-keyfile <%= @keyfile %>
+keyfile <%= scope.lookupvar("tarsnap::keyfile") %>
 
 # Don't archive files which have the nodump flag set
-<%- unless @nodump -%>no-<%- end -%>nodump
+<%- unless scope.lookupvar("tarsnap::nodump") -%>no-<%- end -%>nodump
 
 # Print statistics when creating or deleting archives
-<%- unless @print_stats -%>no-<%- end -%>print-stats
+<%- unless scope.lookupvar("tarsnap::print_stats") -%>no-<%- end -%>print-stats
 
 # Create a checkpoint once per GB of uploaded data.
-checkpoint-bytes <%= @checkpoint_bytes %>
+checkpoint-bytes <%= scope.lookupvar("tarsnap::checkpoint_bytes") %>
 
 ### Other options, not applicable to most systems
 
@@ -21,9 +21,9 @@ checkpoint-bytes <%= @checkpoint_bytes %>
 # writing archives.  Use of this option is recommended only in
 # cases where TCP congestion control is known to be the limiting
 # factor in upload performance.
-<%- if @aggresssive_networking.nil? -%>
+<%- if scope.lookupvar("tarsnap::aggresssive_networking").nil? -%>
 #aggressive-networking
-<%- elsif !@aggressive_networking -%>
+<%- elsif !scope.lookupvar("tarsnap::aggressive_networking") -%>
 no-aggressive-networking
 <%- else -%>
 aggressive-networking

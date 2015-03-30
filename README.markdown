@@ -142,8 +142,6 @@ tarsnap::periodic { 'etc':
 While it is possible to configure tarsnap on a per-user basis, tarsnap::config
 currently is a class. If you think it's useful to change that, please contribute!
 
-`tarsnap::periodic` assumes GNU coreutils.
-
 ## Development
 
 Please use the github issues functionality to report any bugs or requests for new features.
