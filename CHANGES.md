@@ -1,3 +1,7 @@
+Release v0.4.4 (2015-03-31)
+===========================
+* Fix accidential creation of multiple cronjobs when changing the `keep` parameter
+
 Release v0.2.2 (2015-03-30)
 ===========================
 * Add a Changelog!
