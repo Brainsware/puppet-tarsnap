@@ -56,6 +56,9 @@ define tarsnap::periodic (
   if $keep {
     $off_hour = (24 + ($hour + $offset)) % 24
     cron { "tarsnap-${title}-keep-${keep}":
+      ensure  => absent,
+    }
+    cron { "tarsnap-${title}-keep":
       ensure  => $ensure,
       command => "${::tarsnap::rotate_path} ${title} ${keep}",
       user    => $::tarsnap::user,
