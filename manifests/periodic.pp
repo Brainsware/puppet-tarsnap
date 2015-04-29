@@ -14,7 +14,7 @@
 #   Array of dirs to backup (Default: `[]`)
 #
 # [*keep*]
-#   How many archives to keep. If this is set to `undef` no archives will be
+#   How many archives to keep. If this is set to `0` no archives will be
 #   deleted. (Default: `30`)
 #
 # [*hour*]
@@ -53,7 +53,7 @@ define tarsnap::periodic (
   #   grep for the title,
   #   sort them numerically, then get the everything but last n ($keep)
   #   delete each one of those we've found, separately.
-  if $keep {
+  if $keep > 0 {
     $off_hour = (24 + ($hour + $offset)) % 24
     cron { "tarsnap-${title}-keep-${keep}":
       ensure  => absent,
