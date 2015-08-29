@@ -44,7 +44,7 @@ define tarsnap::periodic (
   validate_re($ensure, '^(present|absent)$')
 
   $dir_string = join($dirs, ' ')
-  $exc_string = prefix($exclude, ' --exclude ')
+  $exc_string = join(prefix($exclude, '--exclude '), ' ')
 
   cron { "tarsnap-${title}-create":
     ensure   => $ensure,
