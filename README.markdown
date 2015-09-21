@@ -17,7 +17,7 @@ this module helps install and configure tarsnap.
 ## Setup
 
 The `tarsnap` module assumes that you have a package named `tarsnap` in your
-package repositories. You can override this expectation by either chainging the
+package repositories. You can override this expectation by either changing the
 `$package_name`, or by setting it to `undef` if you have other means of
 installing it.
 
