@@ -2,32 +2,6 @@
 #
 # wrapper around cron to create and (optionally) cleanup tarsnap archives
 #
-# === Parameters
-#
-# [*name*]
-#   base-name of this archive
-#
-# [*ensure*]
-#   Ensure presence or absence of cron jobs. (Default: `present`)
-#
-# [*dirs*]
-#   Array of dirs to backup (Default: `[]`)
-#
-# [*keep*]
-#   How many archives to keep. If this is set to `0` no archives will be
-#   deleted. (Default: `30`)
-#
-# [*hour*]
-#   Hour when to run. (Default: `fqdn_rand(24, $title)`, i.e.: between 0:xx
-#   and 23:xx)
-#
-# [*minute*]
-#   Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00
-#   and xx:59)
-#
-# [*offset*]
-#   Offset (in hours) when to run the cleanup job. (Default: `1`)
-#
 define tarsnap::periodic (
   $ensure   = present,
   $dirs     = [],
