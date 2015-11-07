@@ -26,4 +26,3 @@ group :development do
   gem 'travis-lint'
   gem 'guard-rake'
 end
-
