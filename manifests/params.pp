@@ -18,6 +18,7 @@ class tarsnap::params {
       $path         = '/usr/bin/tarsnap'
       $archive_path = "${prefix}/bin/tarsnap-archive"
       $rotate_path  = "${prefix}/bin/tarsnap-rotate"
+      $batch_path   = "${prefix}/bin/tarsnap-batch"
       $configfile   = '/etc/tarsnap.conf'
       $cachedir     = '/var/backups/tarsnap'
       $user         = 'root'
@@ -29,6 +30,7 @@ class tarsnap::params {
       $path         = "${prefix}/bin/tarsnap"
       $archive_path = "${prefix}/bin/tarsnap-archive"
       $rotate_path  = "${prefix}/bin/tarsnap-rotate"
+      $batch_path   = "${prefix}/bin/tarsnap-batch"
       $configfile   = "${prefix}/etc/tarsnap.conf"
       $cachedir     = "${prefix}/tarsnap-cache"
       $user         = 'root'

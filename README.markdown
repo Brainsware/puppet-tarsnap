@@ -110,6 +110,21 @@ tarsnap::periodic { 'etc':
 }
 ```
 
+Often if we have a lot of periodic jobs, randomizing will still lead to overlapping runs, which doesn't work with tarnsap. For this purpose we provide a the class `tarsnap::batch`. It can also be directly configured through `tarsnap`:
+
+```puppet
+class { 'tarsnap':
+  locations => {
+    'etc'       => '/etc',
+    'home'      => [ '/home/me/pix', '/home/me/src', '/home/me/txt' ],
+    '.dotfiles' => [ '/home/me/.gnupg', '/home/me/.config', '/home/me/.ssh' ],
+    'blog'      => [ '/home/me/blog/src', '/home/me/blog/pix' ],
+  }
+}
+
+```
+
+
 ## Reference
 
 ### tarsnap
@@ -120,12 +135,14 @@ tarsnap::periodic { 'etc':
 * `path`: Path to tarsnap. (Default: `/usr/bin/tarsnap`)
 * `archive_path`: Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)
 * `rotate_path`: Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
+* `batch_path`: Path to tarsnap-batch script. (Default: `/usr/local/bin/tarsnap-batch`)
 * `cachedir`: Path to tarsnap's cachedir. This directory will be created by puppet. (Default: `/var/backups/tarsnap`)
 * `keyfile`: Path to tarsnap's keyfile for this machine. (Default: `/root/tarsnap.key`)
 * `nodump`: Honor the `nodump` file flag. (Default: `true`)
 * `print_stats`: Print statistics when creating or deleting archives. (Default: `true`)
 * `checkpoint_bytes`: Create a checkpoint once per X of uploaded data (Default: `1G`)
 * `aggressive_networking`: Use multiple TCP connections when writing archives. (Default: `undef`)
+* `locations`: Hash of directory arrays to archive in a batch job. (Default: `{}`)
 
 ### tarsnap::periodic
 
@@ -136,6 +153,14 @@ tarsnap::periodic { 'etc':
 * `hour`: Hour when to run. (Default: `fqdn_rand(24, $title)`, i.e.: between 00:xx and 23:xx)
 * `minute`: Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00 and xx:59)
 * `offset`: Offset (in hours) when to run the cleanup job. (Default: `1`)
+
+### tarsnap::batch
+
+* `ensure`: Ensure presence or absence of batch job. (Default: `present`)
+* `keep`: How many archives to keep. If this is set to `0` no archives will be deleted. (Default: `30`)
+* `hour`: Hour when to run. (Default: `fqdn_rand(6, $title)`, i.e.: between 00:xx and 06:xx)
+* `minute`: Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00 and xx:59)
+* `locations`: Hash of directory arrays. (Default: `$::tarsnap::locations`)
 
 ## Limitations
 
