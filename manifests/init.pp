@@ -21,6 +21,9 @@
 # [*rotate_path*]
 #   Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
 #
+# [*batch_path*]
+#   Path to tarsnap-batch script. (Default: `/usr/local/bin/tarsnap-batch`)
+#
 # [*configfile*]
 #   Path to tarsnap's configuration file. (Default: `/etc/tarsnap.conf`)
 #
@@ -43,12 +46,18 @@
 # [*aggressive_networking*]
 #   Use multiple TCP connections when writing archives. (Default: `undef`)
 #
+# [*batch_enable*]
+#   Whether to include the tarsnap::batch class by default. (Default: false)
+#
+# [*locations*]
+#   Hash, of Hashes, pointing at arrays of directories to archive in a batch job. (Default: {})
 class tarsnap (
   $package_name          = $::tarsnap::params::package_name,
   $package_ensure        = $::tarsnap::params::package_ensure,
   $path                  = $::tarsnap::params::path,
   $archive_path          = $::tarsnap::params::archive_path,
   $rotate_path           = $::tarsnap::params::rotate_path,
+  $batch_path            = $::tarsnap::params::batch_path,
   $configfile            = $::tarsnap::params::configfile,
   $cachedir              = $::tarsnap::params::cachedir,
   $keyfile               = $::tarsnap::params::keyfile,
@@ -58,11 +67,14 @@ class tarsnap (
   $aggressive_networking = $::tarsnap::params::aggressive_networking,
   $user                  = $::tarsnap::params::user,
   $group                 = $::tarsnap::params::group,
+  # batch
+  $locations             = {},
 ) inherits ::tarsnap::params {
 
   validate_absolute_path($path)
   validate_absolute_path($archive_path)
   validate_absolute_path($rotate_path)
+  validate_absolute_path($batch_path)
   validate_absolute_path($configfile)
   validate_absolute_path($cachedir)
   validate_absolute_path($keyfile)
@@ -76,4 +88,8 @@ class tarsnap (
 
   class { '::tarsnap::install': } ~>
   class { '::tarsnap::config': }
+
+  unless empty($locations) {
+    include ::tarsnap::batch
+  }
 }
