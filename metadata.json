@@ -3,7 +3,7 @@
   "version": "0.4.5",
   "author": "brainsware",
   "summary": "a module to install and configure tarsnap",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/Brainsware/puppet-tarsnap",
   "project_page": "https://github.com/Brainsware/puppet-tarsnap",
   "issues_url": "https://github.com/Brainsware/puppet-tarsnap/issues",

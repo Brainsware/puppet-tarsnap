@@ -1,0 +1,9 @@
+---
+# this was generated, under pain, with
+#
+#   travis encrypt -r Brainsware/puppet-tarsnap
+#
+# If all things go right, this is our puppet forge password :D 
+#
+.travis.yml:
+  secure: "GpJtOasaHmxgHmA+PZ4w/KdYNIa4//PiO6F2qa58888cfK/7/9rCwZ5mbh+qsChMAy1QbVeDQZGFAgqxcL7Ix4uEf4QeQOpgOwAMPBl7SjctDb23iAAGU/qWmG2+nPAFqUdsA1zQafu89/ou0M/Ye0cJpG0vRb6YhrhhRRXuw3M="
