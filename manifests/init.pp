@@ -4,53 +4,6 @@
 #
 # === Parameters
 #
-# [*package_name*]
-#   Name of tarsnap package. If tarsnap is installed by other means, set this to
-#   `undef` (Default: `tarsnap`)
-#
-# [*package_ensure*]
-#   Ensure tarsnap package is in this version, `absent`, `present` or `latest`.
-#   (Default: `present`)
-#
-# [*path*]
-#   Path to tarsnap. (Default: `/usr/bin/tarsnap`)
-#
-# [*archive_path*]
-#   Path to tarsnap-archive script. (Default: `/usr/local/bin/tarsnap-archive`)
-#
-# [*rotate_path*]
-#   Path to tarsnap-rotate script. (Default: `/usr/local/bin/tarsnap-rotate`)
-#
-# [*batch_path*]
-#   Path to tarsnap-batch script. (Default: `/usr/local/bin/tarsnap-batch`)
-#
-# [*configfile*]
-#   Path to tarsnap's configuration file. (Default: `/etc/tarsnap.conf`)
-#
-# [*cachedir*]
-#   Path to tarsnap's cachedir. This directory will be created by puppet.
-#   (Default: `/var/backups/tarsnap`)
-#
-# [*keyfile*]
-#   Path to tarsnap's keyfile for this machine. (Default: `/root/tarsnap.key`)
-#
-# [*nodump*]
-#   Honor the `nodump` file flag. (Default: `true`)
-#
-# [*print_stats*]
-#   Print statistics when creating or deleting archives. (Default: `true`)
-#
-# [*checkpoint_bytes*]
-#   Create a checkpoint once per X of uploaded data (Default: `1G`)
-#
-# [*aggressive_networking*]
-#   Use multiple TCP connections when writing archives. (Default: `undef`)
-#
-# [*batch_enable*]
-#   Whether to include the tarsnap::batch class by default. (Default: false)
-#
-# [*locations*]
-#   Hash, of Hashes, pointing at arrays of directories to archive in a batch job. (Default: {})
 class tarsnap (
   $package_name          = $::tarsnap::params::package_name,
   $package_ensure        = $::tarsnap::params::package_ensure,
