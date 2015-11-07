@@ -1,9 +1,9 @@
-Release v0.4.4 (2015-03-31)
-===========================
+Releasing v0.4.4 (2015-03-31)
+=============================
 * Fix accidential creation of multiple cronjobs when changing the `keep` parameter
 
-Release v0.4.3 (2015-03-30)
-===========================
+Releasing v0.4.3 (2015-03-30)
+=============================
 * Add a Changelog!
 * Add support for FreeBSD (tarsnap, you are now home)
 * Fix support for Future parser (this opens up a can of worms: PUP-4328)
