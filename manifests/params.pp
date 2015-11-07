@@ -4,12 +4,7 @@
 #
 class tarsnap::params {
 
-  $package_ensure        = 'present'
-  $keyfile               = '/root/tarsnap.key'
-  $nodump                = true
-  $print_stats           = true
-  $checkpoint_bytes      = '1G'
-  $aggressive_networking = undef
+  $keyfile = '/root/tarsnap.key'
 
   case $::kernel {
     'Linux': {

@@ -5,8 +5,8 @@
 # === Parameters
 #
 class tarsnap (
+  $package_ensure        = 'present',
   $package_name          = $::tarsnap::params::package_name,
-  $package_ensure        = $::tarsnap::params::package_ensure,
   $path                  = $::tarsnap::params::path,
   $archive_path          = $::tarsnap::params::archive_path,
   $rotate_path           = $::tarsnap::params::rotate_path,
@@ -14,12 +14,13 @@ class tarsnap (
   $configfile            = $::tarsnap::params::configfile,
   $cachedir              = $::tarsnap::params::cachedir,
   $keyfile               = $::tarsnap::params::keyfile,
-  $nodump                = $::tarsnap::params::nodump,
-  $print_stats           = $::tarsnap::params::print_stats,
-  $checkpoint_bytes      = $::tarsnap::params::checkpoint_bytes,
-  $aggressive_networking = $::tarsnap::params::aggressive_networking,
   $user                  = $::tarsnap::params::user,
   $group                 = $::tarsnap::params::group,
+  # config
+  $nodump                = true,
+  $print_stats           = true,
+  $checkpoint_bytes      = '1G',
+  $aggressive_networking = undef,
   # batch
   $locations             = {},
 ) inherits ::tarsnap::params {
