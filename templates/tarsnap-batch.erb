@@ -6,7 +6,7 @@ date_stamp=$(date +%Y%m%d%H%M)
 <%= scope.lookupvar("tarsnap::path") %> --quiet -c -f <%= title -%>.$date_stamp  \
   <%= Array(paths).join(" \\\n  ") %>
 <%- end -%>
-<%- if @keep > 0 -%>
+<%- if @keep.to_i > 0 -%>
 
 # Cleanup
 <%-   @locations.keys.each do |title| -%>

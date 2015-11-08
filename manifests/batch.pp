@@ -12,8 +12,13 @@ class tarsnap::batch (
 
   validate_re($ensure, '^(present|absent)$')
 
+  $file_ensure = $ensure ? {
+    'present' => 'file',
+    default   => $ensure,
+  }
+
   file { $::tarsnap::batch_path:
-    ensure  => file,
+    ensure  => $file_ensure,
     mode    => '0755',
     content => template("${module_name}/tarsnap-batch.erb"),
   }
