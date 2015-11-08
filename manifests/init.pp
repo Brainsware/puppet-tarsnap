@@ -22,6 +22,7 @@ class tarsnap (
   $checkpoint_bytes      = '1G',
   $aggressive_networking = undef,
   # batch
+  $batch_enable          = false,
   $locations             = {},
 ) inherits ::tarsnap::params {
 
@@ -43,7 +44,8 @@ class tarsnap (
   class { '::tarsnap::install': } ~>
   class { '::tarsnap::config': }
 
-  unless empty($locations) {
-    include ::tarsnap::batch
+  class { '::tarsnap::batch':
+    enable    => $batch_enable,
+    locations => $locations,
   }
 }

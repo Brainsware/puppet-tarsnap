@@ -3,22 +3,22 @@
 # this class serializes (rather than ineffectually randomize) tarsnap jobs
 #
 class tarsnap::batch (
-  $ensure    = present,
+  $enable    = true,
   $keep      = 30,
   $hour      = fqdn_rand(6, $title),
   $minute    = fqdn_rand(60, $title),
   $locations = $::tarsnap::locations,
 ) {
 
-  validate_re($ensure, '^(present|absent)$')
+  validate_bool($enable)
 
-  $file_ensure = $ensure ? {
-    'present' => 'file',
-    default   => $ensure,
+  $ensure = $enable ? {
+    false   => 'absent',
+    default => 'present',
   }
 
   file { $::tarsnap::batch_path:
-    ensure  => $file_ensure,
+    ensure  => $ensure,
     mode    => '0755',
     content => template("${module_name}/tarsnap-batch.erb"),
   }

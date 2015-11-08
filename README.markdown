@@ -114,7 +114,8 @@ Often if we have a lot of periodic jobs, randomizing will still lead to overlapp
 
 ```puppet
 class { 'tarsnap':
-  locations => {
+  batch_enable => false,
+  locations    => {
     'etc'       => '/etc',
     'home'      => [ '/home/me/pix', '/home/me/src', '/home/me/txt' ],
     '.dotfiles' => [ '/home/me/.gnupg', '/home/me/.config', '/home/me/.ssh' ],
@@ -123,7 +124,6 @@ class { 'tarsnap':
 }
 
 ```
-
 
 ## Reference
 
@@ -142,6 +142,7 @@ class { 'tarsnap':
 * `print_stats`: Print statistics when creating or deleting archives. (Default: `true`)
 * `checkpoint_bytes`: Create a checkpoint once per X of uploaded data (Default: `1G`)
 * `aggressive_networking`: Use multiple TCP connections when writing archives. (Default: `undef`)
+* `batch_enable`: Whether or not to include the batch-proccessing class. (Default: `false`)
 * `locations`: Hash of directory arrays to archive in a batch job. (Default: `{}`)
 
 ### tarsnap::periodic
@@ -160,7 +161,7 @@ class { 'tarsnap':
 
 ### tarsnap::batch
 
-* `ensure`: Ensure presence or absence of batch job. (Default: `present`)
+* `enable`: Ensure presence or absence of batch script and cron job. (Default: `true`)
 * `keep`: How many archives to keep. If this is set to `0` no archives will be deleted. (Default: `30`)
 * `hour`: Hour when to run. (Default: `fqdn_rand(6, $title)`, i.e.: between 00:xx and 06:xx)
 * `minute`: Minute when to run. (Default: `fqdn_rand(60, $title)`, i.e.: between xx:00 and xx:59)
