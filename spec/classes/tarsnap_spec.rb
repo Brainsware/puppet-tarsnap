@@ -48,7 +48,8 @@ describe 'tarsnap', :type => :class do
 
     let(:params) do
       {
-        :locations => {
+        :batch_enable => true,
+        :locations    => {
           'etc'      => ['/etc/', '/usr/local/etc', '/opt/etc'],
           'home'     => ['/home/me/src', '/home/me/pix'],
           'dotfiles' => ['/home/me/.ssh', '/home/me/.config'],
@@ -57,7 +58,7 @@ describe 'tarsnap', :type => :class do
     end
     it do
       is_expected.to contain_file('/usr/local/bin/tarsnap-batch').with(
-        'ensure' => 'file',
+        'ensure' => 'present',
         'mode'   => '0755',
       )
     end
