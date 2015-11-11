@@ -9,6 +9,6 @@ shift
 <%= scope.lookupvar("tarsnap::path") %> --list-archives \
   | grep ${title}. \
   | sort -rn \
-  | sed '1,<%= @keep -%>d' \
+  | sed "1,${keep}d" \
   | xargs -rn1 <%= scope.lookupvar("tarsnap::path") %> -d -f
 
