@@ -1,3 +1,7 @@
+Releasing v0.4.6 (2016-01-16)
+=============================
+* Add batch ability to aggregate jobs as batch
+
 Releasing v0.4.4 (2015-03-31)
 =============================
 * Fix accidential creation of multiple cronjobs when changing the `keep` parameter
