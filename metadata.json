@@ -1,6 +1,6 @@
 {
   "name": "brainsware-tarsnap",
-  "version": "0.4.6",
+  "version": "1.0.0",
   "author": "brainsware",
   "summary": "a module to install and configure tarsnap",
   "license": "Apache-2.0",

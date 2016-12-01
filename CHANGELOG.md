@@ -1,3 +1,8 @@
+Releasing v1.0.0 (2016-12-01)
+=============================
+* Fix typo in Template
+* Release v1.0.0, the last release to support Puppet 3.x
+
 Releasing v0.4.6 (2016-01-16)
 =============================
 * Add batch ability to aggregate jobs as batch
