@@ -29,3 +29,14 @@ matrix:
     - rvm: 2.4.0-preview1
 notifications:
   email: false
+deploy:
+  provider: puppetforge
+  user: brainsware
+  password:
+    secure: "GpJtOasaHmxgHmA+PZ4w/KdYNIa4//PiO6F2qa58888cfK/7/9rCwZ5mbh+qsChMAy1QbVeDQZGFAgqxcL7Ix4uEf4QeQOpgOwAMPBl7SjctDb23iAAGU/qWmG2+nPAFqUdsA1zQafu89/ou0M/Ye0cJpG0vRb6YhrhhRRXuw3M="
+  on:
+    tags: true
+    # all_branches is required to use tags
+    all_branches: true
+    # Only publish if our main Ruby target builds
+    rvm: 2.3.1
