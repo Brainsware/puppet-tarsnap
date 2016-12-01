@@ -3,9 +3,12 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
 require 'puppet_blacksmith/rake_tasks'
-require 'rubocop/rake_task'
+require 'puppet-strings/tasks'
 
-RuboCop::RakeTask.new
+if RUBY_VERSION >= '2.3.0'
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+end
 
 PuppetLint.configuration.relative = true
 PuppetLint.configuration.log_format = '%{path}:%{linenumber}:%{check}:%{KIND}:%{message}'
