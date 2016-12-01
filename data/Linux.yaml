@@ -1,0 +1,12 @@
+# Linux defaults
+---
+tarsnap::package_name : 'tarsnap'
+tarsnap::prefix       : '/usr/local'
+tarsnap::path         : '/usr/bin/tarsnap'
+tarsnap::archive_path : "%{hiera('tarsnap::prefix')}/bin/tarsnap-archive"
+tarsnap::rotate_path  : "%{hiera('tarsnap::prefix')}/bin/tarsnap-rotate"
+tarsnap::batch_path   : "%{hiera('tarsnap::prefix')}/bin/tarsnap-batch"
+tarsnap::configfile   : '/etc/tarsnap.conf'
+tarsnap::cachedir     : '/var/backups/tarsnap'
+tarsnap::user         : 'root'
+tarsnap::group        : 'root'

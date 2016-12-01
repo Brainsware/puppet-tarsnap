@@ -4,19 +4,19 @@
 #
 class tarsnap::config {
 
-  file { $::tarsnap::cachedir:
+  file { $tarsnap::cachedir:
     ensure => directory,
-    owner  => $::tarsnap::user,
-    group  => $::tarsnap::group,
+    owner  => $tarsnap::user,
+    group  => $tarsnap::group,
     mode   => '0700',
   }
 
-  file { $::tarsnap::configfile:
+  file { $tarsnap::configfile:
     ensure  => file,
-    owner   => $::tarsnap::user,
-    group   => $::tarsnap::group,
+    owner   => $tarsnap::user,
+    group   => $tarsnap::group,
     mode    => '0644',
-    content => template("${module_name}/tarsnap.conf.erb"),
+    content => epp("${module_name}/tarsnap.conf.epp"),
   }
 
 }
