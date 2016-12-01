@@ -1,42 +1,26 @@
+#   Copyright 2016 Brainsware
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
 ---
-notifications:
-  email: false
-sudo: false
 language: ruby
-cache: bundler
-bundler_args: --without system_tests
-addons:
-  apt:
-    sources:
-      - augeas
-    packages:
-      - libaugeas-dev
+bundler_args: --without development system_tests
+sudo: false
 before_install: rm Gemfile.lock || true
-script:
-  - 'bundle exec rake $CHECK'
+script: bundle exec rake test
 matrix:
-  fast_finish: true
   include:
-  - rvm: 1.9.3
-    env: PUPPET_VERSION="~> 3.4" CHECK=test
-  - rvm: 1.9.3
-    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" CHECK=test
-  - rvm: 2.1.6
-    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" CHECK=test
-  - rvm: 2.1.6
-    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=test
-  - rvm: 2.2.3
-    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=test
-  - rvm: 2.2.3
-    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=rubocop
-deploy:
-  provider: puppetforge
-  user: brainsware
-  password:
-    secure: "GpJtOasaHmxgHmA+PZ4w/KdYNIa4//PiO6F2qa58888cfK/7/9rCwZ5mbh+qsChMAy1QbVeDQZGFAgqxcL7Ix4uEf4QeQOpgOwAMPBl7SjctDb23iAAGU/qWmG2+nPAFqUdsA1zQafu89/ou0M/Ye0cJpG0vRb6YhrhhRRXuw3M="
-  on:
-    tags: true
-    # all_branches is required to use tags
-    all_branches: true
-    # Only publish if our main Ruby target builds
-    rvm: 1.9.3
+  - rvm: 2.0.0
+    env: PUPPET_GEM_VERSION="~> 3.0" STRICT_VARIABLES="yes"
+  - rvm: 2.1.0
+    env: PUPPET_GEM_VERSION="~> 4.0" STRICT_VARIABLES=yes
