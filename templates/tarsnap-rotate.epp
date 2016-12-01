@@ -1,0 +1,14 @@
+#!/bin/sh
+
+title="$1"
+shift
+
+keep="$1"
+shift
+
+<%= $tarsnap::path %> --list-archives \
+  | grep ${title}. \
+  | sort -rn \
+  | sed "1,${keep}d" \
+  | xargs -rn1 <%= $tarsnap::path %> -d -f
+

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+title="$1"
+shift
+
+<%= $tarsnap::path %> --quiet -c -f $title.$(date +%Y%m%d%H%M) $@

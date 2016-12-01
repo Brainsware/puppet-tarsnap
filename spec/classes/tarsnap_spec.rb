@@ -65,7 +65,7 @@ describe 'tarsnap', :type => :class do
     end
     it do
       is_expected.to contain_file('/usr/local/bin/tarsnap-batch').with_content(
-        %r{.*  /usr/local/etc \\\n.*}
+        %r{.* /usr/local/etc \\\n.*}
       )
     end
   end

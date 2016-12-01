@@ -8,9 +8,9 @@ require 'rubocop/rake_task'
 RuboCop::RakeTask.new
 
 PuppetLint.configuration.relative = true
-PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.log_format = '%{path}:%{linenumber}:%{check}:%{KIND}:%{message}'
 PuppetLint.configuration.fail_on_warnings = true
+PuppetLint.configuration.send('disable_relative_classname_inclusion')
 
 # Forsake support for Puppet 2.6.2 for the benefit of cleaner code.
 # http://puppet-lint.com/checks/class_parameter_defaults/
