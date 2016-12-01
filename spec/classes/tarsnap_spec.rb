@@ -27,6 +27,7 @@ describe 'tarsnap', :type => :class do
             owner:  'root',
             group:  group,
           )
+          is_expected.to contain_file("#{sysconf}/tarsnap.conf").with_content(/^#aggressive-networking/)
         end
         it do
           is_expected.to contain_file(cachedir).with(
