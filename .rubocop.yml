@@ -30,8 +30,9 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Enabled: false
 
-# dealbreaker:
-Style/TrailingComma:
+Style/TrailingCommaInArguments:
+  Enabled: false
+Style/TrailingCommaInLiteral:
   Enabled: false
 Style/ClosingParenthesisIndentation:
   Enabled: false

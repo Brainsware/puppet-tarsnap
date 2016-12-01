@@ -21,7 +21,7 @@ checkpoint-bytes <%= scope.lookupvar("tarsnap::checkpoint_bytes") %>
 # writing archives.  Use of this option is recommended only in
 # cases where TCP congestion control is known to be the limiting
 # factor in upload performance.
-<%- if scope.lookupvar("tarsnap::aggresssive_networking").nil? -%>
+<%- if scope.lookupvar("tarsnap::aggressive_networking").nil? -%>
 #aggressive-networking
 <%- elsif !scope.lookupvar("tarsnap::aggressive_networking") -%>
 no-aggressive-networking
