@@ -5,46 +5,33 @@
 # === Parameters
 #
 class tarsnap (
-  $package_ensure        = 'present',
-  $package_name          = $::tarsnap::params::package_name,
-  $path                  = $::tarsnap::params::path,
-  $archive_path          = $::tarsnap::params::archive_path,
-  $rotate_path           = $::tarsnap::params::rotate_path,
-  $batch_path            = $::tarsnap::params::batch_path,
-  $configfile            = $::tarsnap::params::configfile,
-  $cachedir              = $::tarsnap::params::cachedir,
-  $keyfile               = $::tarsnap::params::keyfile,
-  $user                  = $::tarsnap::params::user,
-  $group                 = $::tarsnap::params::group,
+  String $package_name,
+  Tea::Absolutepath $path,
+  Tea::Absolutepath $archive_path,
+  Tea::Absolutepath $rotate_path,
+  Tea::Absolutepath $batch_path,
+  Tea::Absolutepath $configfile,
+  Tea::Absolutepath $cachedir,
+  String $user,
+  String $group,
+  String $package_ensure        = 'present',
+  Tea::Absolutepath $keyfile    = '/root/tarsnap.key',
   # config
-  $nodump                = true,
-  $print_stats           = true,
-  $checkpoint_bytes      = '1G',
-  $aggressive_networking = undef,
+  Boolean           $nodump                = true,
+  Boolean           $print_stats           = true,
+  String            $checkpoint_bytes      = '1G',
+  Optional[Boolean] $aggressive_networking = undef,
   # batch
-  $batch_enable          = false,
-  $locations             = {},
-) inherits ::tarsnap::params {
+  Boolean           $batch_enable          = false,
+  Tarsnap::Location $locations             = {},
+) {
 
-  validate_absolute_path($path)
-  validate_absolute_path($archive_path)
-  validate_absolute_path($rotate_path)
-  validate_absolute_path($batch_path)
-  validate_absolute_path($configfile)
-  validate_absolute_path($cachedir)
-  validate_absolute_path($keyfile)
+  contain tarsnap::install
+  contain tarsnap::config
 
-  validate_bool($nodump)
-  validate_bool($print_stats)
+  Class[tarsnap::install] ~> Class[tarsnap::config]
 
-  if $aggressive_networking {
-    validate_bool($print_stats)
-  }
-
-  class { '::tarsnap::install': } ~>
-  class { '::tarsnap::config': }
-
-  class { '::tarsnap::batch':
+  class { 'tarsnap::batch':
     enable    => $batch_enable,
     locations => $locations,
   }

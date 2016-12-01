@@ -3,18 +3,18 @@
 class tarsnap::install {
 
   package { 'tarsnap':
-    ensure => $::tarsnap::package_ensure,
-    name   => $::tarsnap::package_name,
+    ensure => $tarsnap::package_ensure,
+    name   => $tarsnap::package_name,
   }
 
-  file { $::tarsnap::archive_path:
+  file { $tarsnap::archive_path:
     ensure  => file,
     mode    => '0755',
-    content => template("${module_name}/tarsnap-archive.erb"),
+    content => epp("${module_name}/tarsnap-archive.epp"),
   }
-  file { $::tarsnap::rotate_path:
+  file { $tarsnap::rotate_path:
     ensure  => file,
     mode    => '0755',
-    content => template("${module_name}/tarsnap-rotate.erb"),
+    content => epp("${module_name}/tarsnap-rotate.epp"),
   }
 }

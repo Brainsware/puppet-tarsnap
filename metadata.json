@@ -1,16 +1,21 @@
 {
   "name": "brainsware-tarsnap",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "author": "brainsware",
   "summary": "a module to install and configure tarsnap",
   "license": "Apache-2.0",
   "source": "https://github.com/Brainsware/puppet-tarsnap",
   "project_page": "https://github.com/Brainsware/puppet-tarsnap",
   "issues_url": "https://github.com/Brainsware/puppet-tarsnap/issues",
+  "data_provider": "hiera",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
+      "version_requirement": ">= 4.0.0 <= 5.0.0"
+    },
+    {
+      "name": "puppet-tea",
+      "version_requirement": ">= 0.2.0 <= 2.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -28,6 +33,12 @@
     },
     {
       "operatingsystem": "FreeBSD"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.5.0 < 5.0.0"
     }
   ]
 }

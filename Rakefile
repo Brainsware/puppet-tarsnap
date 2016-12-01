@@ -3,14 +3,17 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
 require 'puppet_blacksmith/rake_tasks'
-require 'rubocop/rake_task'
+require 'puppet-strings/tasks'
 
-RuboCop::RakeTask.new
+if RUBY_VERSION >= '2.3.0'
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+end
 
 PuppetLint.configuration.relative = true
-PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.log_format = '%{path}:%{linenumber}:%{check}:%{KIND}:%{message}'
 PuppetLint.configuration.fail_on_warnings = true
+PuppetLint.configuration.send('disable_relative_classname_inclusion')
 
 # Forsake support for Puppet 2.6.2 for the benefit of cleaner code.
 # http://puppet-lint.com/checks/class_parameter_defaults/

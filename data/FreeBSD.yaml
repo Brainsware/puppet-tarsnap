@@ -1,0 +1,12 @@
+# FreeBSD defaults
+---
+tarsnap::package_name : 'tarsnap'
+tarsnap::prefix       : '/usr/local'
+tarsnap::path         : "%{hiera('tarsnap::prefix')}/bin/tarsnap"
+tarsnap::archive_path : "%{hiera('tarsnap::prefix')}/bin/tarsnap-archive"
+tarsnap::rotate_path  : "%{hiera('tarsnap::prefix')}/bin/tarsnap-rotate"
+tarsnap::batch_path   : "%{hiera('tarsnap::prefix')}/bin/tarsnap-batch"
+tarsnap::configfile   : "%{hiera('tarsnap::prefix')}/etc/tarsnap.conf"
+tarsnap::cachedir     : "%{hiera('tarsnap::prefix')}/tarsnap-cache"
+tarsnap::user         : 'root'
+tarsnap::group        : 'wheel'

@@ -1,5 +1,6 @@
 fixtures:
   repositories:
     stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
+    tea:    "git://github.com/voxpupuli/puppet-tea.git"
   symlinks:
     tarsnap: "#{source_dir}"
