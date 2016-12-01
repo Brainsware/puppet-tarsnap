@@ -1,3 +1,9 @@
+Releasing v2.0.0 (2016-12-01)
+=============================
+* "Port" module to Puppet 4!
+* Use Types for checks!
+* Use EPP templates!
+
 Releasing v1.0.0 (2016-12-01)
 =============================
 * Fix typo in Template
