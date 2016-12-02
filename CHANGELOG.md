@@ -1,8 +1,9 @@
-Releasing v2.0.0 (2016-12-01)
+Releasing v2.0.1 (2016-12-02)
 =============================
 * "Port" module to Puppet 4!
 * Use Types for checks!
 * Use EPP templates!
+* Fix release process to work with travis (again)
 
 Releasing v1.0.0 (2016-12-01)
 =============================
