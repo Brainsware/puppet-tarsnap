@@ -6,12 +6,12 @@ require 'puppet_blacksmith/rake_tasks'
 require 'puppet-strings/tasks'
 
 if RUBY_VERSION >= '2.3.0'
-  require 'rubocop/rake_task'
+  require 'rubocop/rake_task.rb'
   RuboCop::RakeTask.new
 end
 
 PuppetLint.configuration.relative = true
-PuppetLint.configuration.log_format = '%{path}:%{linenumber}:%{check}:%{KIND}:%{message}'
+PuppetLint.configuration.log_format = '%<path>s:%<linenumber>s:%<check>s:%<KIND>s:%<message>s'
 PuppetLint.configuration.fail_on_warnings = true
 PuppetLint.configuration.send('disable_relative_classname_inclusion')
 
@@ -21,11 +21,11 @@ PuppetLint.configuration.send('disable_class_parameter_defaults')
 # http://puppet-lint.com/checks/class_inherits_from_params_class/
 PuppetLint.configuration.send('disable_class_inherits_from_params_class')
 
-exclude_paths = %w(
-  pkg/**/*
-  vendor/**/*
-  spec/**/*
-)
+exclude_paths = [
+  'pkg/**/*',
+  'vendor/**/*',
+  'spec/**/*',
+]
 PuppetLint.configuration.ignore_paths = exclude_paths
 PuppetSyntax.exclude_paths = exclude_paths
 
@@ -35,11 +35,11 @@ RSpec::Core::RakeTask.new(:acceptance) do |t|
 end
 
 desc 'Run metadata_lint, lint, syntax, and spec tests.'
-task test: [
-  :metadata_lint,
-  :lint,
-  :syntax,
-  :spec,
+task test: %I[
+  metadata_lint
+  lint
+  syntax
+  spec
 ]
 
 Blacksmith::RakeTask.new do |t|
@@ -56,7 +56,7 @@ task travis_release: [
 desc 'Check Changelog.'
 task :check_changelog do
   v = Blacksmith::Modulefile.new.version
-  if File.readlines('CHANGELOG.md').grep(/Releasing v#{v}/).size == 0
-    fail "Unable to find a CHANGELOG.md entry for the #{v} release."
+  if File.readlines('CHANGELOG.md').grep(/Releasing v#{v}/).size.zero?
+    raise "Unable to find a CHANGELOG.md entry for the #{v} release."
   end
 end

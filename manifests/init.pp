@@ -6,16 +6,16 @@
 #
 class tarsnap (
   String $package_name,
-  Tea::Absolutepath $path,
-  Tea::Absolutepath $archive_path,
-  Tea::Absolutepath $rotate_path,
-  Tea::Absolutepath $batch_path,
-  Tea::Absolutepath $configfile,
-  Tea::Absolutepath $cachedir,
+  Stdlib::Absolutepath $path,
+  Stdlib::Absolutepath $archive_path,
+  Stdlib::Absolutepath $rotate_path,
+  Stdlib::Absolutepath $batch_path,
+  Stdlib::Absolutepath $configfile,
+  Stdlib::Absolutepath $cachedir,
   String $user,
   String $group,
   String $package_ensure        = 'present',
-  Tea::Absolutepath $keyfile    = '/root/tarsnap.key',
+  Stdlib::Absolutepath $keyfile    = '/root/tarsnap.key',
   # config
   Boolean           $nodump                = true,
   Boolean           $print_stats           = true,
@@ -31,8 +31,13 @@ class tarsnap (
 
   Class[tarsnap::install] ~> Class[tarsnap::config]
 
-  class { 'tarsnap::batch':
-    enable    => $batch_enable,
-    locations => $locations,
+  if $batch_enable {
+    class { 'tarsnap::batch':
+      enable     => $batch_enable,
+      locations  => $locations,
+      batch_path => $batch_path,
+      user       => $user,
+      path       => $path,
+    }
   }
 }
