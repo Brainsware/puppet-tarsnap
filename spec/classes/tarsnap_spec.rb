@@ -1,6 +1,6 @@
 require 'spec_helper.rb'
 
-describe 'tarsnap', :type => :class do
+describe 'tarsnap setup', :type => :class do
   context 'supported operating systems' do
     on_supported_os.each do |os, facts|
       context "on #{os}" do
@@ -20,27 +20,14 @@ describe 'tarsnap', :type => :class do
           group    = 'root'
         end
 
-        it do
-          is_expected.to contain_file("#{sysconf}/tarsnap.conf").with(
-            ensure: 'file',
-            mode:   '0644',
-            owner:  'root',
-            group:  group,
-          )
-          is_expected.to contain_file("#{sysconf}/tarsnap.conf").with_content(/^#aggressive-networking/)
-        end
-        it do
-          is_expected.to contain_file(cachedir).with(
-            ensure: 'directory',
-            mode:   '0700',
-            owner:  'root',
-            group:  group,
-          )
-        end
+        it { is_expected.to contain_file("#{sysconf}/tarsnap.conf").with(ensure: 'file', mode: '0644', owner: 'root', group: group).with_content(/^#aggressive-networking/) }
+
+        it { is_expected.to contain_file(cachedir).with(ensure: 'directory', mode: '0700', owner: 'root', group: group) }
       end
     end
   end
-
+end
+describe 'tarsnap batch', :type => :class do
   context 'creating a batch process' do
     _os, facts = on_supported_os.first
     let(:facts) do
@@ -58,13 +45,7 @@ describe 'tarsnap', :type => :class do
       }
     end
     it do
-      is_expected.to contain_file('/usr/local/bin/tarsnap-batch').with(
-        'ensure' => 'present',
-        'mode'   => '0755',
-      )
-    end
-    it do
-      is_expected.to contain_file('/usr/local/bin/tarsnap-batch').with_content(
+      is_expected.to contain_file('/usr/local/bin/tarsnap-batch').with('ensure' => 'present', 'mode' => '0755').with_content(
         %r{.* /usr/local/etc \\\n.*}
       )
     end

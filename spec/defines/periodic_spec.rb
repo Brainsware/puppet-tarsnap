@@ -14,7 +14,7 @@ describe 'tarsnap::periodic', :type => :define do
         let(:params) do
           {
             'ensure' => 'present',
-            'dirs'   => %w(/etc /opt/etc /usr/local/etc),
+            'dirs'   => ['/etc /opt/etc /usr/local/etc'],
           }
         end
 
