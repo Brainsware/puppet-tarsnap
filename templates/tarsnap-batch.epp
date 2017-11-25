@@ -3,17 +3,17 @@
 date_stamp=$(date +%Y%m%d%H%M)
 # Archive
 <%- $tarsnap::batch::locations.map |$title, $paths| { -%>
-<%= $tarsnap::path %> --quiet -c -f <%= $title -%>.$date_stamp  \
+<%= $tarsnap::batch::path %> --quiet -c -f <%= $title -%>.$date_stamp  \
   <%= [$paths].join(" \\\n  ") %>
 <%- } -%>
 <%- if $tarsnap::batch::keep > 0 {-%>
 
 # Cleanup
 <%-   $tarsnap::batch::locations.keys.each |$title| { -%>
-<%= $tarsnap::path %> --list-archives \
+<%= $tarsnap::batch::path %> --list-archives \
   | grep <%= $title -%>. \
   | sort -rn \
   | sed '1,<%= $tarsnap::batch::keep -%>d' \
-  | xargs -rn1 <%= $tarsnap::path %> -d -f
+  | xargs -rn1 <%= $tarsnap::batch::path %> -d -f
 <%-   } -%>
 <%- } -%>

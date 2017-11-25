@@ -31,8 +31,13 @@ class tarsnap (
 
   Class[tarsnap::install] ~> Class[tarsnap::config]
 
-  class { 'tarsnap::batch':
-    enable    => $batch_enable,
-    locations => $locations,
+  if $batch_enable {
+    class { 'tarsnap::batch':
+      enable     => $batch_enable,
+      locations  => $locations,
+      batch_path => $batch_path,
+      user       => $user,
+      path       => $path,
+    }
   }
 }

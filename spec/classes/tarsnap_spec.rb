@@ -1,6 +1,6 @@
 require 'spec_helper.rb'
 
-describe 'tarsnap setup', :type => :class do
+describe 'tarsnap', :type => :class do
   context 'supported operating systems' do
     on_supported_os.each do |os, facts|
       context "on #{os}" do
@@ -27,7 +27,7 @@ describe 'tarsnap setup', :type => :class do
     end
   end
 end
-describe 'tarsnap batch', :type => :class do
+describe 'tarsnap::batch', :type => :class do
   context 'creating a batch process' do
     _os, facts = on_supported_os.first
     let(:facts) do
@@ -36,8 +36,8 @@ describe 'tarsnap batch', :type => :class do
 
     let(:params) do
       {
-        :batch_enable => true,
-        :locations    => {
+        :enable => true,
+        :locations => {
           'etc'      => ['/etc/', '/usr/local/etc', '/opt/etc'],
           'home'     => ['/home/me/src', '/home/me/pix'],
           'dotfiles' => ['/home/me/.ssh', '/home/me/.config'],
