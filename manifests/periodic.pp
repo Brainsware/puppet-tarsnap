@@ -3,9 +3,9 @@
 # wrapper around cron to create and (optionally) cleanup tarsnap archives
 #
 define tarsnap::periodic (
-  Array[Tea::Absolutepath] $dirs,
+  Array[Stdlib::Absolutepath] $dirs,
   Enum[present, absent]    $ensure  = present,
-  Array[Tea::Absolutepath] $exclude = [],
+  Array[Stdlib::Absolutepath] $exclude = [],
   # won't validate these, since they are passed directly to cron
   $keep     = 30,
   $hour     = fqdn_rand(24, $title),
