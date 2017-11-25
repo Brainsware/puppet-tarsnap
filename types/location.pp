@@ -1,1 +1,1 @@
-type Tarsnap::Location = Hash[String, Variant[Tea::Absolutepath, Array[Tea::Absolutepath]]]
+type Tarsnap::Location = Hash[String, Variant[Stdlib::Absolutepath, Array[Stdlib::Absolutepath]]]
